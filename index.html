@@ -1,1 +1,34 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <script src="lib/jquery.js"></script>
+    <script src="lib/jquery-ui.js"></script>
+</head>
+<body>
+<div id="game-board">
+    <div class="header">
+        <span class="config-button">Options</span>
+        <span class="playing"></span>
+        <span class="quit-button hidden">Quit</span>
+        <span class="help-button">Help</span>
+    </div>
+    <div id="secret-row">
+        <div class="code-row"></div>
+        <div class="hint-button">Hint</div>
+    </div>
+    <div id="guesses">
+    </div>
+    <div class="check-button hidden">Check</div>
+    <div class="start-button">Start</div>
+    <div class="modal"></div>
+</div>
+<script type="module">
+    import App from "./app/app.js";
+    App.run();
+</script>
+</body>
+</html>
