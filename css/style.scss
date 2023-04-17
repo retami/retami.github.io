@@ -5,21 +5,18 @@ $hint-button-color: rgba(58, 41, 30);
 body {
   font-family: Arial, sans-serif;
   background-color: #124f10;
-  background-repeat: repeat;
 }
 
 #game-board {
   display: flex;
   width: min-content;
-  min-width: 381px;
+  min-width: 360px;
   margin: 30px auto;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
 
   background-color: #a26d45;
-  background-repeat: repeat;
-  background-size: 100%;
   color: $hint-button-color;
 
   padding: 20px 30px;
@@ -31,8 +28,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0 20px;
   margin: 20px 0;
+  padding: 0 10px;
 }
 
 .config-button, .help-button, .quit-button, .hint-button, .check-button, .start-button, .playing {
@@ -41,6 +38,7 @@ body {
   border-radius: 10px;
   background-color: rgb(155, 110, 80);
   color: $hint-button-color;
+  font-size: 14px;
   border: 1px solid rgba($hint-button-color, 0.8);
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -79,14 +77,15 @@ body {
 
 .playing {
   display: inline-block;
-  width: 7em;
-  text-align: left;
+  min-width: 7em;
+  text-align: center;
 }
 
 #guesses {
   display: flex;
   flex-direction: column;
   justify-content: start;
+  align-items: center;
 
   .guess-holes {
     display: flex;
@@ -100,21 +99,36 @@ body {
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    height: 50px;
   }
+}
+
+.hint-button-container, .feedback-holes {
+  width: 80px;
+  margin-left: 20px;
+}
+
+.hint-button-container .hint-button {
+  width: min-content;
+}
+
+
+.feedback-holes {
+  flex-wrap: wrap;
 }
 
 #secret-row {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 0 0 0;
 }
 
 .code-row, .guess-row {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   padding: 10px 0;
 
   -webkit-box-shadow: 0 4px 6px -6px #000;
@@ -135,13 +149,14 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  margin: 0 5px;
+  margin: 0 2px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   backdrop-filter: brightness(0.75);
+}
 
-  &:first-child {
-    margin-left: 20px;
-  }
+.feedback-spacer {
+  flex-basis: 100%;
+  height: 0;
 }
 
 .code-hole {
@@ -174,7 +189,6 @@ body {
   cursor: pointer;
   font-weight: bold;
   padding: 10px;
-  margin-left: 20px;
 }
 
 .black-feedback {
@@ -239,8 +253,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:max-content;
-  margin: 20% auto;
+  width: max-content;
+  margin: 10% auto;
   padding: 10px 20px;
 
   text-align: center;
@@ -251,6 +265,8 @@ body {
   background-color: #a26d45;
 
   line-height: 1.5em;
+
+  max-width: 300px;
 }
 
 .win-modal {
@@ -258,9 +274,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:max-content;
+  width: max-content;
 
-  margin: 20% auto;
+  margin: 10% auto;
   padding: 10px 20px;
 
   border: 1px solid #e8d720;
@@ -282,7 +298,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top:0.5em;
+    margin-top: 0.5em;
     font-size: 1.2em;
     line-height: 1.5em;
 
@@ -389,5 +405,43 @@ body {
       cursor: pointer;
       top: -7px;
     }
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  body {
+    margin: 0;
+    background-color: #a26d45;
+  }
+
+  #game-board {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  #guesses .feedback-holes {
+    margin-left: 10px;
+  }
+  .hint-button-container {
+    margin-left: 10px;
+  }
+  .code-hole, .guess-hole {
+    width: 35px;
+    height: 35px;
+  }
+
+  .header {
+    margin: 0;
+  }
+
+  #help-modal, #config-modal, #quit-modal, #lost-modal, #win-modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
   }
 }

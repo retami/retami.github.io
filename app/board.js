@@ -55,7 +55,7 @@ export default class Board {
 
         set(secret) {
             $(".code-hole").each(function (i) {
-                $(this).css('background-color', secret.get()[i])
+                $(this).data('color', secret.get()[i]);
             });
         },
 
@@ -70,7 +70,9 @@ export default class Board {
         hint() {
             let candidates = $('.code-hole.covered');
             let randomIndex = Math.floor(Math.random() * candidates.length);
-            candidates.eq(randomIndex).removeClass('covered');
+            let candidate = candidates.eq(randomIndex);
+            candidate.css('background-color', candidate.data('color'));
+            candidate.removeClass('covered');
         }
     }
 
@@ -84,6 +86,10 @@ export default class Board {
                 for (let i = 0; i < numberOfPins; i++) {
                     $("<div>", {"class": "guess-hole"}).appendTo(guessHoles).addClass('disabled');
                     $("<div>", {"class": "feedback-hole"}).appendTo(feedbackHoles);
+                    if(numberOfPins === 2 && i === 0 || numberOfPins === 3 && i === 1 ||
+                        numberOfPins === 4 && i === 1 || numberOfPins === 5 && i === 2 || numberOfPins === 6 && i === 2) {
+                        $("<div>", {"class": "feedback-spacer"}).appendTo(feedbackHoles);
+                    }
                 }
             }
             $('.guess-row:first').addClass('current');

@@ -53,7 +53,7 @@ const ConfigModal = (function () {
                     $( "#config_pins_slider" ).slider({
                       value: ${game.numberOfPins},
                       min: 2,
-                      max: 6,
+                      max: 5,
                       step: 1,
                       slide: function( event, ui ) {
                         $( "#config_pins" ).val( ui.value );

@@ -6,8 +6,8 @@ const ColorPicker = (function () {
         selectedColorButton = e.target;
         let colorPicker = document.querySelector('.color-picker');
         colorPicker.classList.toggle('visible');
-        colorPicker.style.top = (selectedColorButton.getBoundingClientRect().y + 4) + 'px';
-        colorPicker.style.left = (selectedColorButton.getBoundingClientRect().x + 4) + 'px';
+        colorPicker.style.top = (selectedColorButton.getBoundingClientRect().y + selectedColorButton.getBoundingClientRect().height / 2) + 'px';
+        colorPicker.style.left = (selectedColorButton.getBoundingClientRect().x + selectedColorButton.getBoundingClientRect().width / 2) + 'px';
     }
 
     function init(colors, callbackArg = null) {
@@ -19,8 +19,8 @@ const ColorPicker = (function () {
             coloroption.classList.add("color-option");
             coloroption.classList.add("color-" + i);
             coloroption.style.backgroundColor = colors[i - 1];
-            let x = Math.floor(Math.cos(2 * Math.PI / colors.length * (i - 1)) * 40);
-            let y = Math.floor(Math.sin(2 * Math.PI / colors.length * (i - 1)) * 40);
+            let x = Math.floor(Math.cos(2 * (i - 1) / colors.length * Math.PI ) * 40 - 17);
+            let y = Math.floor(Math.sin(2 * (i - 1) / colors.length * Math.PI ) * 40 - 17);
             coloroption.style.top = x + "px";
             coloroption.style.left = y + "px";
             coloroption.addEventListener('click', (e) => {
